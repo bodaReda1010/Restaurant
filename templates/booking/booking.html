@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load django_bootstrap5 %}
+{% block content %}
+<div class="col-lg-7 mb-5 mx-auto">
+    <div class="contact-form bg-light p-30">
+        <div class="login form">
+            <h1>Book A Table</h1>
+            <form method="POST">
+                {% csrf_token %}
+                {% bootstrap_form form %}
+                <button type='submit' class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>        
+{% endblock content %}
