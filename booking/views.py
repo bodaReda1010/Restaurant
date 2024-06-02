@@ -3,9 +3,12 @@ from . models import BookTable
 from . forms import BookTableForm
 from django.http import HttpResponse
 from accounts.models import Account
+from django.contrib.auth.decorators import login_required
 
 
 
+
+@login_required(login_url='accounts:login')
 def booking_table(request):
     name = Account.objects.get(user = request.user)
     if request.method == 'POST':

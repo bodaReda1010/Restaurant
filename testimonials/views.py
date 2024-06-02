@@ -2,9 +2,12 @@ from django.shortcuts import render , redirect
 from . models import Comment , Account
 from . forms import CommentForm
 from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 
+
+@login_required(login_url='accounts:login')
 def testimonials(request):
     comments = Comment.objects.all()
     context = {
@@ -13,7 +16,7 @@ def testimonials(request):
     return render(request , 'testimonial/testimonial.html' , context)
 
 
-
+@login_required(login_url='accounts:login')
 def comments(request):
     account = Account.objects.get(user = request.user)
     if request.method == 'POST':

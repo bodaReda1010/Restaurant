@@ -5,9 +5,12 @@ from . models import Contact
 from . forms import ContactForm
 from django.http import HttpResponse
 from accounts.models import Account
+from django.contrib.auth.decorators import login_required
 
 
 
+
+@login_required(login_url='accounts:login')
 def contact(request):
     account = Account.objects.get(user = request.user)
     if request.method == 'POST':
